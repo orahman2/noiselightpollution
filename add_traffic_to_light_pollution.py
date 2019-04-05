@@ -1,4 +1,4 @@
-# Script to add transport and proximity based data to traffic file
+# Script to add light pollution data to traffic file
 # Input: Traffic data for 2015 and light pollution data
 # Output: Light pollution-enriched traffic data
 
