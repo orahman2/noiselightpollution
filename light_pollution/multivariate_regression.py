@@ -1,11 +1,9 @@
 # Script to perform multivariate regression
 # Input: Traffic points enriched with all the parameters to be considered
 # Output: results of multivariate regression
-# Based on example provided by data to fish: https://datatofish.com/multiple-linear-regression-python/
 
 from pandas import DataFrame
 from sklearn import linear_model
-from sklearn.metrics import r2_score
 import statsmodels.api as sm
 import time
 import json
@@ -14,15 +12,29 @@ import math
 from sys import argv
 from scipy import stats
 import numpy as np
-import constants
 
-script, opt = argv
+outlier_keys = [
+    'buses_and_coaches',
+    'cars_and_taxis',
+    'distance_to_closest_tube_station',
+    'people_at_closest_tube_station',
+    'two_wheeled_motor_vehicles'
+]
 
-type_of_noise = opt
-pollution = constants.getPollutionObject(type_of_noise)
+useful_keys = [
+    "pedal_cycles",
+    "two_wheeled_motor_vehicles",
+    "cars_and_taxis",
+    "buses_and_coaches",
+    "lgvs",
+    "population",
+    "distance_to_closest_tube_station",
+    "people_at_closest_tube_station",
+    "distance_to_closest_airport",
+    "distance_to_london",
+    'light_pollution'
+]
 
-outlier_keys = pollution.outlier_keys
-useful_keys = pollution.useful_keys
 traffic_dict = {}
 keys_to_remove = set()
 
@@ -46,7 +58,9 @@ def find_outliers(dictionary):
         ])
     return keys_to_remove
 
-traffic_data = json.load(open(pollution.filepath))
+# script, opt = argv
+
+traffic_data = json.load(open('data/traffic/full_traffic_data.geojson'))
 
 # Remove keys from all traffic data
 def remove_keys(set_of_keys):
@@ -79,24 +93,24 @@ remove_keys(keys_to_remove)
 remove_keys(find_outliers(traffic_dict))
 
 # Specify axes
-df = DataFrame(traffic_dict ,columns=useful_keys)
-# df = DataFrame(traffic_dict ,columns=useful_keys)
-useful_keys.remove(pollution.type_of_pollution)
+df = DataFrame(traffic_dict, columns=useful_keys)
+useful_keys.remove('light_pollution')
 X = df[useful_keys]
-Y = df[pollution.type_of_pollution]
+Y = df['light_pollution']
 
-# Perform regression
+# Perform regression with sklearn
 regr = linear_model.LinearRegression()
 regr.fit(X, Y)
 
-# Record outputs
 print('Intercept: \n', regr.intercept_)
 coefs = regr.coef_
 print('Coefficients: \n', coefs)
 
-X = sm.add_constant(X) # adding a constant
- 
+# with statsmodels
+X = sm.add_constant(X)  # adding a constant
+
 model = sm.OLS(Y, X).fit()
+# predictions = model.predict(X)
 
 print_model = model.summary()
 print(print_model)

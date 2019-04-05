@@ -1,6 +1,10 @@
+# Script to read pubs data from file and write as json
+# Input: pub data csv
+# Output: pub data json
+
 import csv
 import json
-reader = csv.reader(open(r"open_pubs_london.csv"),delimiter=',')
+reader = csv.reader(open(r"data/open_pubs_london.csv"),delimiter=',')
 
 tube_coordinates = []
 
@@ -13,5 +17,5 @@ for row in list(reader):
     except:
         print(f"{lat},{lon}")
 
-output = open('london_pubs_data.json', 'w')
+output = open('data/london_pubs_data.json', 'w')
 json.dump(tube_coordinates, output)
