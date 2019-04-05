@@ -1,0 +1,7 @@
+pollution_map_leaflet
+.vscode
+__pycache__
+data
+light_pollution
+noise_data
+statistical-gis-boundaries-london

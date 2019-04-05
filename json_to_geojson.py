@@ -1,6 +1,6 @@
 # Script to convert json file to geojson file
-# Input: Noise class and traffic
-# Output: noise-enriched traffic data
+# Input: json file
+# Output: geojson file
 
 from geojson import Point, Feature, FeatureCollection, dump
 from sys import argv
