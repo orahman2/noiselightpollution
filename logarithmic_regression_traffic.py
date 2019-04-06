@@ -12,11 +12,11 @@ import math
 noise_data = json.load(open("data/noise/noise_array_2012.json"))
 
 data_lists = [
-    json.load(open("data/lgvs_2012.json")),
-    json.load(open("data/all_hgvs_2012.json")),
-    json.load(open("data/cars_and_taxis_2012.json")),
-    json.load(open("data/two_wheeled_motor_vehicles_2012.json")),
-    json.load(open("data/buses_and_coaches_2012.json")),
+    json.load(open("data/traffic/lgvs_2012.json")),
+    json.load(open("data/traffic/all_hgvs_2012.json")),
+    json.load(open("data/traffic/cars_and_taxis_2012.json")),
+    json.load(open("data/traffic/two_wheeled_motor_vehicles_2012.json")),
+    json.load(open("data/traffic/buses_and_coaches_2012.json")),
     json.load(open("data/traffic/traffic_array_2012.json"))
 ]
 

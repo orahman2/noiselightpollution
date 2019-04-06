@@ -5,7 +5,7 @@
 import json
 import math
 
-traffic_data = json.load(open("data/traffic/filtered_traffic_data_with_noise_class_discrete.json"))
+traffic_data = json.load(open("data/noise/filtered_traffic_data_with_noise_class_discrete.json"))
 
 noise = []
 traffic = []
@@ -15,17 +15,14 @@ cars_and_taxis = []
 two_wheeled_motor_vehicles = []
 buses_and_coaches = []
 
-def transform_to_logged_val(input_val):
-    return input_val
-
 for feature in traffic_data["features"]:
     noise.append(feature["noise_class"])
-    lgvs.append(transform_to_logged_val(feature["properties"]["lgvs"]))
-    all_hgvs.append(transform_to_logged_val(feature["properties"]["all_hgvs"]))
-    cars_and_taxis.append(transform_to_logged_val(feature["properties"]["cars_and_taxis"]))
-    two_wheeled_motor_vehicles.append(transform_to_logged_val(feature["properties"]["two_wheeled_motor_vehicles"]))
-    buses_and_coaches.append(transform_to_logged_val(feature["properties"]["buses_and_coaches"]))
-    traffic.append(transform_to_logged_val(feature["properties"]["all_motor_vehicles"]))
+    lgvs.append(feature["properties"]["lgvs"])
+    all_hgvs.append(feature["properties"]["all_hgvs"])
+    cars_and_taxis.append(feature["properties"]["cars_and_taxis"])
+    two_wheeled_motor_vehicles.append(feature["properties"]["two_wheeled_motor_vehicles"])
+    buses_and_coaches.append(feature["properties"]["buses_and_coaches"])
+    traffic.append(feature["properties"]["all_motor_vehicles"])
 
 output = open('data/noise/noise_array_2012.json', 'w')
 print(len(noise))

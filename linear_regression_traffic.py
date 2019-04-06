@@ -10,11 +10,11 @@ import numpy as np
 noise_data = json.load(open("data/noise/noise_array_2012.json"))
 
 data_lists = [
-    json.load(open("data/lgvs_2012.json")),
-    json.load(open("data/all_hgvs_2012.json")),
-    json.load(open("data/cars_and_taxis_2012.json")),
-    json.load(open("data/two_wheeled_motor_vehicles_2012.json")),
-    json.load(open("data/buses_and_coaches_2012.json")),
+    json.load(open("data/traffic/lgvs_2012.json")),
+    json.load(open("data/traffic/all_hgvs_2012.json")),
+    json.load(open("data/traffic/cars_and_taxis_2012.json")),
+    json.load(open("data/traffic/two_wheeled_motor_vehicles_2012.json")),
+    json.load(open("data/traffic/buses_and_coaches_2012.json")),
     json.load(open("data/traffic/traffic_array_2012.json"))
 ]
 
@@ -26,7 +26,7 @@ for data_list in data_lists:
 
     plt.plot(np.array(data_list, dtype=np.float64), np.array(noise_data, dtype=np.float64), 'o', label='original data')
     plt.plot(np.array(data_list, dtype=np.float64), intercept + slope*np.array(data_list, dtype=np.float64), 'r', label='fitted line')
-    plt.xlabel('Log(Daily Average Traffic)', fontsize=18)
+    plt.xlabel('Daily Average Traffic', fontsize=18)
     plt.ylabel('Noise (dB)', fontsize=16)
     plt.legend()
     plt.show()
