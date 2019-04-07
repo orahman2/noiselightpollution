@@ -9,7 +9,7 @@ import random
 import util
 import time
 
-population_data = json.load(open("data/population/lodon_post_code_sector_population.geojson"))
+population_data = json.load(open("data/population/london_post_code_sector_population.geojson"))
 traffic_data = json.load(open("data/traffic/traffic_data_with_light_and_population_and_proximity.geojson"))
 
 def build_polygon_population_list():
