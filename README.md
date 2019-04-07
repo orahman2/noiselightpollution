@@ -49,7 +49,12 @@ npm run dev
 
 The commands listed above may take a few minutes depending on your internet connection and machine specifications. Alternatively, the deployed version can be accessed on https://noiselightpollution.herokuapp.com/ .
 
-For the data processing, QGIS (an open source Geographic Information System tool) was used to stitch together and filter geo-encoded data spatially. Given this, and the fact that the scripts are used for various different purposes, there is no set sequence to call these files. Different data sets are enriched differently for different purposes.
+For the data processing, QGIS (an open source Geographic Information System tool) was used to stitch together and filter geo-encoded data spatially. Given this, and the fact that the scripts are used for various different purposes and run for a very long time, and require data sets that special access needs to be requested for, instructions haven't been explicity given to run these. However, a dependency diagram on how the two main workflows occur is given below. 
+## Noise Pollution Workflow
+![Noise Pollution Workflow](./noise_pollution_workflow.png?raw=true)
+## Light Pollution Workflow
+![Light Pollution Workflow](./light_pollution_workflow.png?raw=true)
+It is recommended that you don't try and run them as it could easily take more than hours to do so, and the process won't be entirely automatic.  Different data sets are enriched differently for different purposes.
 
 ### Credits
 
